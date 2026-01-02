@@ -1,0 +1,22 @@
+[workspace]
+authors = ["cc <cctom@umich.edu>"]
+channels = ["conda-forge"]
+name = "FoundationPose"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+eigen = { version = "3.4.0.*", channel = "conda-forge" }
+cuda-nvcc = { version = "12.8.*", channel = "conda-forge" }
+cuda-libraries-dev = { version = "12.8.*", channel = "conda-forge" }
+cuda-version = { version = "12.8.*", channel = "conda-forge" }
+cmake = { version = ">=3.15", channel = "conda-forge" }
+make = { channel = "conda-forge" }
+boost = { channel = "conda-forge" }
+pkg-config = { channel = "conda-forge" }
+gxx = { channel = "conda-forge" }
+gcc = { channel = "conda-forge" }
+python = { version = "3.12.*", channel = "conda-forge" }
+setuptools = { channel = "conda-forge" }

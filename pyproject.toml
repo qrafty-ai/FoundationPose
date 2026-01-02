@@ -1,0 +1,99 @@
+[project]
+name = "foundationpose"
+version = "0.1.0"
+description = "Unified 6D Pose Estimation and Tracking of Novel Objects"
+readme = "readme.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.7.0",
+    "torchcodec>=0.9.1",
+    "torchvision>=0.24.1",
+    "torchaudio>=2.0.0",
+    "numpy>=2.0.0",
+    "scipy>=1.12.0",
+    "scikit-learn>=1.4.1",
+    "scikit-image>=0.22.0",
+    "setuptools>=69.0.0",
+    "pyyaml>=6.0.1",
+    "ruamel.yaml>=0.18.6",
+    "ninja>=1.11.1",
+    "h5py>=3.10.0",
+    "numba>=0.60.0",
+    "pybind11>=2.12.0",
+    "imageio>=2.34.0",
+    "opencv-python>=4.9.0",
+    "opencv-contrib-python>=4.9.0",
+    "plotly>=5.20.0",
+    "open3d>=0.18.0",
+    "pyglet>=1.5.28",
+    "pysdf>=0.1.9",
+    "trimesh>=4.2.2",
+    "xatlas>=0.0.9",
+    "rtree>=1.2.0",
+    "pyrender>=0.1.45",
+    "pyopengl>=3.1.0",
+    "pyopengl-accelerate>=3.1.0",
+    "meshcat>=0.3.2",
+    "webdataset>=0.2.86",
+    "omegaconf>=2.3.0",
+    "pypng>=0.20220715.0",
+    "panda3d>=1.10.14",
+    "simplejson>=3.19.2",
+    "bokeh>=3.4.0",
+    "roma>=1.4.4",
+    "seaborn>=0.13.2",
+    "pin>=2.7.0",
+    "openpyxl>=3.1.2",
+    "torchnet>=0.0.4",
+    "wandb>=0.16.5",
+    "colorama>=0.4.6",
+    "gputil>=1.4.0",
+    "imgaug>=0.4.0",
+    "xlsxwriter>=3.2.0",
+    "timm>=0.9.16",
+    "albumentations>=1.4.2",
+    "nodejs>=0.1.1",
+    "jupyterlab>=4.1.5",
+    "ipywidgets>=8.1.2",
+    "objaverse>=0.1.7",
+    "g4f>=0.2.7",
+    "ultralytics>=8.0.120",
+    "pycocotools>=2.0.7",
+    "py-spy>=0.3.14",
+    "pybullet>=3.2.6",
+    "videoio>=0.2.8",
+    "kornia>=0.7.2",
+    "einops>=0.7.0",
+    "transformations>=2024.6.1",
+    "joblib>=1.3.2",
+    "warp-lang>=1.0.2",
+    "fvcore>=0.1.5",
+    "cython>=0.29.37",
+    "nvdiffrast @ git+https://github.com/NVlabs/nvdiffrast.git",
+    "kaolin @ git+https://github.com/NVIDIAGameWorks/kaolin.git",
+    "pytorch3d @ git+https://github.com/facebookresearch/pytorch3d.git",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu128" },
+]
+torchvision = [
+  { index = "pytorch-cu128" },
+]
+torchcodec = [
+  { index = "pytorch-cu128" },
+]
+
+[tool.uv.extra-build-dependencies]
+pytorch3d = ["torch", "setuptools", "wheel"]
+nvdiffrast = ["torch", "setuptools", "wheel"]
+kaolin = ["torch", "setuptools", "wheel", "cython", "numpy"]
+
+[tool.setuptools]
+py-modules = []
