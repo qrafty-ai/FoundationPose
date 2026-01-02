@@ -66,7 +66,20 @@ year          = {2023},
 
 1) [Optional] Download our preprocessed reference views [here](https://drive.google.com/drive/folders/1PXXCOJqHXwQTbwPwPbGDN9_vLVe0XpFS?usp=sharing) in order to run model-free few-shot version.
 
-# Env setup option 1: docker (recommended)
+# Env setup option 1: Modernized (Recommended)
+This method utilizes `pixi` for system/CUDA dependencies and `uv` for fast Python environment management.
+
+- **Prerequisites**: Install [pixi](https://pixi.sh/) and [uv](https://github.com/astral-sh/uv).
+
+```bash
+# Setup environment and build all extensions (mycpp, mycuda, pytorch3d, kaolin, nvdiffrast)
+bash build_all_modern.sh
+
+# Run demo using the managed environment
+pixi run python run_demo.py
+```
+
+# Env setup option 2: docker (legacy)
   ```
   cd docker/
   docker pull wenbowen123/foundationpose && docker tag wenbowen123/foundationpose foundationpose  # Or to build from scratch: docker build --network host -t foundationpose .
@@ -92,7 +105,7 @@ docker pull shingarey/foundationpose_custom_cuda121:latest
 Then modify the bash script to use this image instead of `foundationpose:latest`.
 
 
-# Env setup option 2: conda (experimental)
+# Env setup option 3: conda (legacy/experimental)
 
 - Setup conda environment
 
