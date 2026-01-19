@@ -67,6 +67,18 @@ class CMakeBuild(BuildExtension):
             subprocess.check_call(configure_cmd, cwd=build_dir)
             subprocess.check_call(build_cmd, cwd=build_dir)
             print(f"Successfully built mycpp extension in {build_dir}")
+
+            # Copy built library to build_lib so it gets included in the wheel
+            built_libs = list(build_dir.glob("mycpp*.so"))
+            if built_libs:
+                built_lib = built_libs[0]
+                dest_dir = Path(self.build_lib)
+                dest_dir.mkdir(parents=True, exist_ok=True)
+                print(f"Copying {built_lib} to {dest_dir}")
+                shutil.copy(built_lib, dest_dir)
+            else:
+                print("Warning: Could not find built mycpp library to copy")
+
         except subprocess.CalledProcessError as e:
             print(f"Error building mycpp: {e}")
             sys.exit(1)
