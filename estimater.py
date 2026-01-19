@@ -13,6 +13,7 @@ import itertools
 from learning.training.predict_score import *
 from learning.training.predict_pose_refine import *
 import yaml
+import mycpp
 
 
 class FoundationPose:
