@@ -15,7 +15,7 @@ from setuptools.command.build_ext import build_ext
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 
-class CMakeBuild(build_ext):
+class CMakeBuild(BuildExtension):
     """Custom build extension that runs CMake for mycpp"""
 
     def run(self):
