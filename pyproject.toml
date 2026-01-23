@@ -96,6 +96,9 @@ pytorch3d = ["torch>=2.8.0,<2.9.0", "setuptools", "wheel"]
 nvdiffrast = ["torch>=2.8.0,<2.9.0", "setuptools", "wheel"]
 kaolin = ["torch>=2.8.0,<2.9.0", "setuptools", "wheel", "cython", "numpy"]
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.hatch.build.targets.wheel]
 packages = ["foundationpose"]
 artifacts = [
