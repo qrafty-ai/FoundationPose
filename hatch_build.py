@@ -37,12 +37,13 @@ class CustomBuildHook(BuildHookInterface):
         built_libs = list(mycpp_build.glob("mycpp*.so"))
         if built_libs:
             for lib in built_libs:
-                # Add to root of wheel
-                build_data["force_include"][str(lib)] = lib.name
-                print(f"Will include {lib} as {lib.name}")
+                # Add to foundationpose package
+                target_path = f"foundationpose/{lib.name}"
+                build_data["force_include"][str(lib)] = target_path
+                print(f"Will include {lib} as {target_path}")
 
-        # Include mycuda built libraries (they'll be in bundlesdf/mycuda/)
-        mycuda_dir = Path(self.root) / "bundlesdf" / "mycuda"
+        # Include mycuda built libraries (they'll be in foundationpose/bundlesdf/mycuda/)
+        mycuda_dir = Path(self.root) / "foundationpose" / "bundlesdf" / "mycuda"
         mycuda_libs = list(mycuda_dir.glob("*.so"))
         for lib in mycuda_libs:
             rel_path = str(lib.relative_to(self.root))
@@ -104,7 +105,7 @@ class CustomBuildHook(BuildHookInterface):
 
         from torch.utils.cpp_extension import load
 
-        mycuda_dir = Path(self.root) / "bundlesdf" / "mycuda"
+        mycuda_dir = Path(self.root) / "foundationpose" / "bundlesdf" / "mycuda"
 
         nvcc_flags = [
             "-Xcompiler",
@@ -177,7 +178,7 @@ class CustomBuildHook(BuildHookInterface):
             print(f"Removed {mycpp_build}")
 
         # Clean mycuda .so files
-        mycuda_dir = Path(self.root) / "bundlesdf" / "mycuda"
+        mycuda_dir = Path(self.root) / "foundationpose" / "bundlesdf" / "mycuda"
         for so_file in mycuda_dir.glob("*.so"):
             so_file.unlink()
             print(f"Removed {so_file}")

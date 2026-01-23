@@ -97,10 +97,10 @@ nvdiffrast = ["torch>=2.8.0,<2.9.0", "setuptools", "wheel"]
 kaolin = ["torch>=2.8.0,<2.9.0", "setuptools", "wheel", "cython", "numpy"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["bundlesdf"]
+packages = ["foundationpose"]
 artifacts = [
-  "bundlesdf/mycuda/*.so",
-  "mycpp*.so",
+  "foundationpose/bundlesdf/mycuda/*.so",
+  "foundationpose/mycpp*.so",
 ]
 
 [build-system]
@@ -109,9 +109,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 include = [
-  "bundlesdf/**/*.py",
-  "bundlesdf/**/*.cu",
-  "bundlesdf/**/*.cpp",
+  "foundationpose/**/*.py",
+  "foundationpose/bundlesdf/**/*.cu",
+  "foundationpose/bundlesdf/**/*.cpp",
   "mycpp/**/*.cpp",
   "mycpp/**/*.h",
   "mycpp/CMakeLists.txt",
