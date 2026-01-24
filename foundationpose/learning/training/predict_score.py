@@ -222,19 +222,21 @@ def make_crop_data_batch(
 
 
 class ScorePredictor:
-    def __init__(self, amp=True):
+    def __init__(self, amp=True, ckpt_path=None, config_path=None):
         self.amp = amp
         self.run_name = "2024-01-11-20-02-45"
-
-        model_name = "model_best.pth"
         code_dir = os.path.dirname(os.path.realpath(__file__))
-        ckpt_dir = f"{code_dir}/../../weights/{self.run_name}/{model_name}"
 
-        self.cfg = OmegaConf.load(
-            f"{code_dir}/../../weights/{self.run_name}/config.yml"
-        )
+        if ckpt_path is None:
+            model_name = "model_best.pth"
+            ckpt_path = f"{code_dir}/../../weights/{self.run_name}/{model_name}"
 
-        self.cfg["ckpt_dir"] = ckpt_dir
+        if config_path is None:
+            config_path = f"{code_dir}/../../weights/{self.run_name}/config.yml"
+
+        self.cfg = OmegaConf.load(config_path)
+
+        self.cfg["ckpt_dir"] = ckpt_path
         self.cfg["enable_amp"] = True
 
         ########## Defaults, to be backward compatible
@@ -258,8 +260,8 @@ class ScorePredictor:
         )
         self.model = ScoreNetMultiPair(cfg=self.cfg, c_in=self.cfg["c_in"]).cuda()
 
-        logging.info(f"Using pretrained model from {ckpt_dir}")
-        ckpt = torch.load(ckpt_dir)
+        logging.info(f"Using pretrained model from {self.cfg['ckpt_dir']}")
+        ckpt = torch.load(self.cfg["ckpt_dir"])
         if "model" in ckpt:
             ckpt = ckpt["model"]
         self.model.load_state_dict(ckpt)
