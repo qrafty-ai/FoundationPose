@@ -1,3 +1,13 @@
+# 🚀 FoundationPose Fork: Modernized & Enhanced
+
+This fork of FoundationPose introduces several improvements to make it easier to install and more flexible to use:
+
+- **Simplified Installation**: Uses [pixi](https://pixi.sh/) and [uv](https://github.com/astral-sh/uv) to automatically manage system dependencies (CUDA, Eigen, etc.) and Python environments. Just run `bash build_all_modern.sh`.
+- **Customizable Predictors**: `ScorePredictor` and `PoseRefinePredictor` now support custom model checkpoint and configuration paths.
+- **Modern Stack**: Updated to support Python 3.12 and PyTorch 2.8+, with streamlined build processes for CUDA/C++ extensions.
+
+---
+
 # FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects
 [[Paper]](https://arxiv.org/abs/2312.08344) [[Website]](https://nvlabs.github.io/FoundationPose/)
 
